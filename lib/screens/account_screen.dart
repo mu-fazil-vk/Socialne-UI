@@ -120,7 +120,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             // follow info
             Padding(
-              padding: const EdgeInsets.only(left: 12),
+              padding: const EdgeInsets.only(left: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
