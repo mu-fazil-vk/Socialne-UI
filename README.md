@@ -24,6 +24,12 @@ Socialne is a beautiful and modern social media app UI that features a home page
   cd Socialne-UI
   flutter run
 ```
+
+## Screenshots
+
+<img align="left" src="https://github.com/mu-fazil-vk/Socialne-UI/blob/main/screenshots/pic-1.jpg" height="300" width="290" >
+<img src="https://github.com/mu-fazil-vk/Socialne-UI/blob/main/screenshots/pic-2.jpg" height="300" width="290" >
+
 ## License 📜
 
 Ripto is licensed under the MIT v3 license. See the [LICENSE](https://github.com/mu-fazil-vk/Socialne-UI/blob/main/LICENSE) file for more information.
