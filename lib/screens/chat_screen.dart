@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:socialne/clips/oval_top_border.dart';
 import 'package:socialne/components/message.dart';
 import 'package:socialne/components/my_message.dart';
 
@@ -82,39 +83,47 @@ class ChatScreen extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height - 240,
-              color: Colors.white,
-              child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                        child: Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      height: 30,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: const Center(
-                          child: Text(
-                        'Today',
-                        style: TextStyle(color: Colors.white),
+            ClipPath(
+              clipper: OvalTopBorderClipper(),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height - 240,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(42),
+                        topRight: Radius.circular(42)),
+                ),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                          child: Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        height: 30,
+                        width: 70,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: const Center(
+                            child: Text(
+                          'Today',
+                          style: TextStyle(color: Colors.white),
+                        )),
                       )),
-                    )),
-                    message('Hi, Brian 👋!'),
-                    message("Can you send presentation file from Mr. Alex, I lost it and can't find that 😥.", time: "4:40 pm"),
-                    myMessage("Yoo, sure Niki"),
-                    myMessage("Let me find that presentation at my laptop, give me a second!", time: "4:42 pm"),
-                    message("Yes sure, Take your Time Brian", time: "4:43 pm"),
-                    myMessage("History of Animal Biolo...", time: "4:50 pm"),
-                    message("Tank you for helping me! 🔥 You save my life hahaha!", time: "4:50 pm"),
-                    myMessage("Yoo, sure Niki 👍", time: "4:51 pm")
-                  ],
+                      message('Hi, Brian 👋!'),
+                      message("Can you send presentation file from Mr. Alex, I lost it and can't find that 😥.", time: "4:40 pm"),
+                      myMessage("Yoo, sure Niki"),
+                      myMessage("Let me find that presentation at my laptop, give me a second!", time: "4:42 pm"),
+                      message("Yes sure, Take your Time Brian", time: "4:43 pm"),
+                      myMessage("History of Animal Biolo...", time: "4:50 pm"),
+                      message("Tank you for helping me! 🔥 You save my life hahaha!", time: "4:50 pm"),
+                      myMessage("Yoo, sure Niki 👍", time: "4:51 pm")
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -143,9 +152,9 @@ class ChatScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: const Color.fromARGB(120, 158, 158, 158),
                                   borderRadius: BorderRadius.circular(60)),
-                              child: const Icon(
-                                Icons.link,
-                                color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: SvgPicture.asset("assets/icons/link.svg", color: Colors.white,),
                               )),
                               prefixText: '|  ',
                               prefixStyle:  const TextStyle(
@@ -166,7 +175,7 @@ class ChatScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(60)),
                               child: IconButton(
                         onPressed: () {},
-                        icon: SvgPicture.asset("assets/icons/share.svg", color: Colors.white,)),
+                        icon: SvgPicture.asset("assets/icons/send.svg",)),
                               ),
                     ),
                   ),

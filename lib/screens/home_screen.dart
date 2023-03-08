@@ -1,4 +1,4 @@
-import 'package:socialne/components/post_clipper.dart';
+import 'package:socialne/clips/oval_top_border.dart';
 import 'package:socialne/components/posts.dart';
 import 'package:socialne/components/stories.dart';
 import 'package:flutter/material.dart';
@@ -47,75 +47,66 @@ class HomeScreen extends StatelessWidget {
         controller: _controller,
         child: Column(
           children: [
-            ClipPath(
-              clipper: PostClipper(),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: screenWidth,
-                    height: 130,
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        if (index == 0) {
-                          return myStories('assets/mystory.jpg', 'Rohith');
-                        } else {
-                          return stories('assets/story.jpg', 'Aleena');
-                        }
-                      },
-                      itemCount: 10,
-                      scrollDirection: Axis.horizontal,
-                    ),
+            Column(
+              children: [
+                SizedBox(
+                  width: screenWidth,
+                  height: 130,
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      if (index == 0) {
+                        return myStories('assets/mystory.jpg', 'Rohith');
+                      } else {
+                        return stories('assets/story.jpg', 'Aleena');
+                      }
+                    },
+                    itemCount: 10,
+                    scrollDirection: Axis.horizontal,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
-            Container(
-              width: screenWidth,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+            ClipPath(
+              clipper: OvalTopBorderClipper(),
+              child: Container(
+                width: screenWidth,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    SvgPicture.asset(
+                  "assets/icons/dash.svg",
+                  width: 100,
+                  height: 50,
+                  color: const Color.fromARGB(255, 222, 221, 221),
+                ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0, right: 8, left: 8),
+                      child:SizedBox(
+                              height: 500,
+                              child: ListView.builder(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return posts('assets/story.jpg', 'aleena', true,
+                                      'assets/mystory.jpg', 'And we end with');
+                                },
+                                itemCount: 5,
+                              )),),
+                  ],
+                ),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                    height: 500,
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return posts('assets/story.jpg', 'aleena', true,
-                            'assets/mystory.jpg', 'And we end with');
-                      },
-                      itemCount: 2,
-                    )),
-              ),
-            ),
           ],
         ),
       ),
     );
-  }
-}
-
-class PostClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    path.lineTo(0, size.height - 30);
-    path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 30);
-    path.lineTo(size.width, 0);
-    // this draws the line from current point to the right top position of the widget
-    path.close(); // this closes the loop from current position to the starting point of widget
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

@@ -1,3 +1,8 @@
+import 'package:socialne/components/own_posts_layout.dart';
+import 'package:socialne/components/posts.dart';
+import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:socialne/clips/oval_top_border.dart';
 import 'package:socialne/constants/constant.dart';
 import 'package:socialne/screens/chat_screen.dart';
 import 'package:socialne/screens/home_screen.dart';
@@ -72,7 +77,7 @@ class _AccountScreenState extends State<AccountScreen> {
           )
         ],
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -202,7 +207,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (builder) => ChatScreen()));
+                          builder: (builder) => const ChatScreen()));
                     },
                     child: Container(
                       height: 50,
@@ -252,22 +257,31 @@ class _AccountScreenState extends State<AccountScreen> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
-                  color: Colors.white),
-              child: Column(
-                children: [
-                  SvgPicture.asset(
-                    "assets/icons/dash.svg",
-                    width: 100,
-                    height: 50,
-                    color: const Color.fromARGB(255, 222, 221, 221),
-                  )
-                ],
+            ClipPath(
+              clipper: OvalTopBorderClipper(),
+              child: Container(
+                padding: EdgeInsets.all(18),
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30)),
+                    color: Colors.white),
+                child: Column(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/icons/dash.svg",
+                      width: 100,
+                      height: 50,
+                      color: const Color.fromARGB(255, 222, 221, 221),
+                    ),
+                    SizedBox(
+                                height: 600,
+                                child: masonryLayout(context)
+                                ),
+                    //SingleChildScrollView(child: masonryLayout(context))
+                  ],
+                ),
               ),
             )
           ],

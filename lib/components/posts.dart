@@ -7,7 +7,7 @@ Widget posts(profileImg, String name, bool isVerified, postImg, description) {
     fit: BoxFit.cover,
   );
   return Padding(
-    padding: const EdgeInsets.all(10),
+    padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
     child: Column(
       children: [
         Row(
